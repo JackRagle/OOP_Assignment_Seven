@@ -63,8 +63,18 @@ public class Sortarray {
 		
 	}
 	
-	public static void bubbleSort(int[] array) {
-		
+	public static int[] bubbleSort(int[] array) {
+		int[] arraySorted = new int[array.length];
+		for(int i = 0; i < array.length; i++) {
+			int placement = 0;
+			for(int j = 0; j < array.length; j++) {
+				if(array[i] > array[j]) {
+					placement++;
+				}
+			}
+			arraySorted[placement] = array[i];
+		}
+		return arraySorted;
 	}
 	
 }
