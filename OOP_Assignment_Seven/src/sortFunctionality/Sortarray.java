@@ -1,17 +1,17 @@
 package sortFunctionality;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Sortarray {
 	
-	public static int[] array;
+	public static int numLines;
 	
 	public static int[] createRandomArray(int arrayLength) {
 		
-		array = new int[arrayLength];
+		int[] array = new int[arrayLength];
 		for(int i = 0; i < arrayLength; i++) {
 			array[i] = (int) (Math.random() * 101);
 		}
@@ -22,13 +22,13 @@ public class Sortarray {
 	
 	public static void writeArrayToFile(int[] array, String filename) throws IOException {
 		
-		Sortarray.array = array;
+		int[] arrayOut = array;
 			
 		FileWriter output = new FileWriter(filename);
 		
 		for(int i = 0; i < array.length; i++) {
 			
-			output.write(array[i]);
+			output.write(arrayOut[i]);
 			output.write("\n");
 			
 		}
@@ -39,21 +39,25 @@ public class Sortarray {
 	
 	public static int[] readFileToArray(String filename) throws IOException {
 		
-		BufferedReader input = new BufferedReader(new FileReader(filename));
+		File file = new File(filename);
+		Scanner input = new Scanner(file);
 		
-		int numLines = 0;
+		numLines = 0;
 		
-		while(input.readLine() != null) {
+		while(input.hasNextInt()) {
+			input.nextLine();
 			numLines++;
 		}
 		
-		array = new int[numLines];
+		input.close();
+		int[] array = new int[numLines];
+		Scanner in = new Scanner(file);
 		
 		for(int i = 0; i < numLines; i++) {
-			array[i] = input.read();
+			array[i] = in.nextInt();
 		}
 		
-		input.close();
+		in.close();
 		
 		return array;
 		
