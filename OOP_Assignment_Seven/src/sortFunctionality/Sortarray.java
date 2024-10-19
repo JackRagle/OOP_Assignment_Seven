@@ -26,11 +26,8 @@ public class Sortarray {
 			
 		FileWriter output = new FileWriter(filename);
 		
-		for(int i = 0; i < array.length; i++) {
-			
-			output.write(arrayOut[i]);
-			output.write("\n");
-			
+		for(int i : arrayOut) {
+			output.write(i + "\n");
 		}
 		
 		output.close();
